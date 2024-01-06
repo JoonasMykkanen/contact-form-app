@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 11:26:56 by jmykkane          #+#    #+#              #
-#    Updated: 2024/01/03 11:33:35 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/01/06 10:11:28 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,3 +19,12 @@ RESET = "\033[0m"
 # Codes for message colors to use
 ERROR = 1
 OK = 0
+
+# HTTP status codes
+HTTP_OK = 200
+HTTP_CREATED = 201
+HTTP_NO_CONTENT = 204
+
+HTTP_AUTH_FAILED = 401
+
+HTTP_INT_ERROR = 500
