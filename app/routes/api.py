@@ -6,7 +6,7 @@
 #    By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/01/03 10:44:23 by jmykkane          #+#    #+#              #
-#    Updated: 2024/01/06 10:22:45 by jmykkane         ###   ########.fr        #
+#    Updated: 2024/01/06 10:27:05 by jmykkane         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ def login():
 # 2) get data from db
 # 3) parse it and return
 @bp.route('/admin', methods=['GET'])
-def display_dashboard():
+def dashboard_data():
     try:
         if not is_authenticated(request):
             raise AuthenticationError('Authentication failed')
