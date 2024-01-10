@@ -6,97 +6,109 @@
 /*   By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 10:38:54 by jmykkane          #+#    #+#             */
-/*   Updated: 2024/01/08 07:21:35 by jmykkane         ###   ########.fr       */
+/*   Updated: 2024/01/10 07:47:29 by jmykkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-import '../css/Form.css'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { useRef } from 'react'
+import gsap from 'gsap'
 
 const Form = () => {
+  const [showUrl, setShowUrl] = useState(false)
+  const urlFieldRef = useRef(null)
+  
+  // Toggles and animates input field based on user choice of radio form
+  const radioFormToggle = (event) => {
+    if (event.target.value === 'yes' && showUrl === false) {
+      gsap.set(urlFieldRef.current, { pointerEvents: 'auto' })
+      gsap.to(urlFieldRef.current, {
+        opacity: 1,
+        x: 0,
+        duration: 0.3,
+        ease: 'power4.inOut'
+      })
+      setShowUrl(true)
+    } else {
+      gsap.to(urlFieldRef.current, { x: 300, opacity: 0, duration: 0.3 })
+      gsap.set(urlFieldRef.current, { pointerEvents: 'none' })
+      setShowUrl(false)
+    }
+  }
+
+  useEffect(() => {
+    if (urlFieldRef.current) {
+        gsap.set(urlFieldRef.current, {
+          pointerEvents: 'none',
+          opacity: 0,
+          x: 300,
+        });
+    }
+  }, []);
 
   return (
-    <div class="w-full px-10 py-5">
+    <div className="w-full px-10 py-5">
       
-      <header class="text-center mb-10">
-        <h1 class="font-bold text-3xl text-gray-900">Jätäthän tietosi</h1>
-        <p>Palailen asiaan yleensä saman päivän aikana</p>
+      <header className="text-center mb-8">
+        <h1 className="font-bold text-4xl text-gray-900">Jätäthän yhteystietosi</h1>
+        <p className='text-xl'>Palailen asiaan yleensä saman päivän aikana</p>
       </header>
       <form action="#">
 
         {/* FIRST NAME */}
-        <div class="flex -mx-3 my-3">
-          <div class="w-1/2 px-3">
-            <div class="relative">
-              <input id="first" name="first" type="text" class="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-indigo-500" placeholder="Matti" />
-            <label for="first" class="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Nimi</label>
+        <div className="flex -mx-3 mb-3">
+          <div className="w-1/2 px-3">
+            <div className="relative">
+              <input id="first" name="first" type="text" className="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-accent" placeholder="Matti" />
+            <label htmlFor="first" className="absolute pl-2 left-0 -top-5 text-secondary text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Nimi</label>
             </div>
           </div>
 
-          {/* LAST NAME */}
-          <div class="w-1/2 px-3">
-          <div class="relative">
-              <input id="last" name="last" type="text" class="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-indigo-500" placeholder="Meikäläinen" />
-              <label for="last" class="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Yritys</label>
+          {/* COMPANY */}
+          <div className="w-1/2 pr-3">
+            <div className="relative">
+              <input id="last" name="last" type="text" className="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-accent" placeholder="Meikäläinen" />
+              <label htmlFor="last" className="absolute pl-2 left-0 -top-5 text-secondary text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Yritys</label>
             </div>
           </div>
         </div>
 
         {/* EMAIL */}
-        <div class="flex">
-          <div class="w-full my-3">
-            <div class="relative">
-              <input id="email" name="email" type="email" class="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-indigo-500" placeholder="john@doe.com" />
-              <label for="email" class="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Sähköposti</label>
+        <div className="flex">
+          <div className="w-full my-3">
+            <div className="relative">
+              <input id="email" name="email" type="email" className="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-accent" placeholder="john@doe.com" />
+              <label htmlFor="email" className="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Sähköposti</label>
             </div>
           </div>
         </div>
 
         {/* PHONE */}
-        <div class="flex">
-          <div class="w-full my-3">
-            <div class="relative">
-              <input id="phone" name="phone" type="tel" class="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-indigo-500" placeholder="+358 40 123 123" />
-              <label for="phone" class="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Puhelin numero</label>
-            </div>
-          </div>
-        </div>
-
-        {/* ALREADY HAVE SITE? */}
-        <div class="flex">
-          <div class="w-full my-3">
-            <h1>Onko sivut jo olemassa?</h1>
-            <div class="relative">
-
-              <label class="inline-flex">
-                <span>Kyllä: </span>
-                <input type="radio" name="options" value="option1" />
-              </label>
-
-              <label class="inline-flex">
-                <span>Ei: </span>
-                <input type="radio" name="options" value="option2" />
-              </label>
-
+        <div className="flex">
+          <div className="w-full my-3">
+            <div className="relative">
+              <input id="phone" name="phone" type="tel" className="peer h-10 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-accent" placeholder="+358 40 123 123" />
+              <label htmlFor="phone" className="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Puhelin numero</label>
             </div>
           </div>
         </div>
         
-
         {/* MESSAGE */}
-        <div class="flex">
-          <div class="w-full my-3">
-            <div class="relative">
-              <textarea id="msg" name="msg" class="peer h-40 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-indigo-500 resize-none" rows="4" placeholder="asd">
+        <div className="flex">
+          <div className="w-full my-3">
+            <div className="relative">
+              <textarea id="msg" name="msg" className="peer h-40 w-full pl-2 rounded-lg border-2 border-gray-300 text-gray-700 placeholder-transparent outline-none focus:border-accent resize-none" rows="4" placeholder="asd">
               </textarea>
-              <label for="msg" class="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Lisätiedot</label>
+              <label htmlFor="msg" className="absolute pl-2 left-0 -top-5 text-gray-400 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-5 peer-focus:text-gray-400 peer-focus:text-sm">Lisätiedot</label>
             </div>
           </div>
         </div>
 
         {/* SEND BUTTON */}
-        <div class="flex">
-          <div class="w-full py-3">
-            <button class="block w-full mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">Lähetä</button>
+        <div className="flex">
+          <div className="w-full">
+            <button className="block w-full mx-auto bg-accent hover:bg-action focus:bg-action text-primary rounded-lg px-3 py-3 font-semibold">Lähetä</button>
           </div>
         </div>
         
