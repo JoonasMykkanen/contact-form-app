@@ -6,7 +6,7 @@
 /*   By: jmykkane <jmykkane@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/07 09:13:12 by jmykkane          #+#    #+#             */
-/*   Updated: 2024/01/10 08:56:12 by jmykkane         ###   ########.fr       */
+/*   Updated: 2024/01/11 09:23:29 by jmykkane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ const Welcome = () => {
   }, [])
 
   return (
-    <div className='h-full'>
+    <div className='h-[90dvh] w-full'>
       <div className='lg:h-1/2 lg:w-full lg:flex lg:flex-col lg:items-center pt-5'>
-        <h2 className='text-secondary'>
+        <h2 className='text-secondary-80'>
           Eihän sivusi ole
           <div className="mask">
             <span data-show>hitaat?</span>
@@ -74,12 +74,12 @@ const Welcome = () => {
       
       </div>
 
-      <div className='h-1/2 flex flex-col items-center justify-center lg:justify-end'>
+      <div className='h-1/2 flex flex-col items-center justify-center lg:justify-end pb-3'>
         <div className='relative'>
           <img src={computerImage} alt='Computer image' className='relative px-10 pb-10 z-10'/>
             <div className='absolute w-full h-full top-0 left-0 z-0'>
               {/* <LoadPage /> */}
-              {/* <OldPage /> */}
+              <OldPage />
           </div>
         </div>
       </div>
