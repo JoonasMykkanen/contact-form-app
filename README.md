@@ -9,8 +9,6 @@
 - **Database Integration**: Inquiries are saved securely in a SQLite database.
 - **Email and Push Notifications**: Real-time notifications for new inquiries to keep admins up-to-date.
 
-## Preview & live demo --> 
-
 ### Desktop View
 
 ![Desktop View](/images/desktop.png)
